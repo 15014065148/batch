@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.eveb.saasops.batch.game.report.mapper.RptBetMapper">
+
+    <select id="getGameApiByApiName" parameterType="map" resultType="com.eveb.saasops.batch.game.report.domain.TGmApi">
+        select DISTINCT api.* from s_sys_api api
+            LEFT JOIN t_gm_depot d on d.id=api.depotId
+        WHERE d.depotCode=#{apiName}
+        and api.available=1
+        <if test='agyAcc!=null and agyAcc.size()>0'>
+            AND api.agyAcc in
+            <foreach item="item" collection="agyAcc" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <delete id="delRptBetDayByDate" parameterType="map">
+        ${schemaPrex}
+        delete from rpt_bet_rcd_day
+        where  startday = #{startday}
+    </delete>
+
+    <insert id="insertBBINDayRptBetList" parameterType="map">
+        ${schemaPrex}
+        insert into rpt_bet_rcd_day
+        (startday,username,platform,gametype,bet,validbet,payout,jackpotBet,jackpotPayout,tip,deposit,withdrawal,rebate,quantity)
+        values
+        <foreach collection="bets" item="rpt" index="index" separator=",">
+            (#{rpt.startday},#{rpt.username},#{rpt.platform},#{rpt.gametype},#{rpt.bet},#{rpt.validbet},#{rpt.payout},#{rpt.jackpotBet},#{rpt.jackpotPayout},#{rpt.tip},#{rpt.deposit},#{rpt.withdrawal},#{rpt.rebate},#{rpt.quantity})
+        </foreach>
+    </insert>
+
+    <insert id="insertBBINDayRptBet" parameterType="map">
+        ${schemaPrex}
+        insert into rpt_bet_rcd_day
+        (startday,username,platform,gametype,bet,validbet,payout,payoff,payoffbet,winnings,tip,deposit,withdrawal,rebate,quantity)
+        values
+        (#{rpt.startday},#{rpt.username},#{rpt.platform},#{rpt.gametype},#{rpt.bet},#{rpt.validbet},#{rpt.payout},#{rpt.payoff},#{rpt.payoffbet},#{rpt.winnings},#{rpt.tip},#{rpt.deposit},#{rpt.withdrawal},#{rpt.rebate},#{rpt.quantity})
+    </insert>
+
+    <select id="getGameCodeList" resultType="com.eveb.saasops.batch.game.report.domain.GameCode">
+        select * from (select depot.depotCode as platform,'game_code' as codetype,tb2.id as codegroup ,tb1.gameCode as codeid,tb1.gameName as codename from
+        (select id,depotId,catId,gameCode,gameName from t_gm_game where available=1 and gameCode !=''
+        union select id,depotId,catId,mbGameCode,gameName from t_gm_game where available=1  and mbGameCode !=''
+        union select id,depotId,catId,adGameCode,gameName from t_gm_game where available=1  and adGameCode !=''
+        union select id,depotId,catId,downGameCode,gameName from t_gm_game where available=1  and downGameCode !=''
+        union select id,depotId,catId,embeddedCode,gameName from t_gm_game where available=1  and embeddedCode !=''
+        union select id,depotId,catId,embeddedCode1,gameName from t_gm_game where available=1 and embeddedCode1 !='')tb1,t_gm_cat tb2,t_gm_depot depot
+        where
+        tb1.catId=tb2.id
+        and tb1.depotId=depot.id
+        union
+        SELECT platform,codetype,codegroup,codeid,codename from t_gm_code) t
+    </select>
+
+    <select id="getSiteForeByApiId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select DISTINCT  ap.prefix  from t_gm_apiprefix ap where 1=1
+        <if test="apiId !=null and apiId >0">
+            And ap.apiId=#{apiId}
+        </if>
+    </select>
+</mapper>

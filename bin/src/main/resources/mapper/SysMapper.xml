@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.eveb.saasops.batch.sys.mapper.SysMapper">
+
+    <select id="selectDatasourceManageAll"  resultType="com.eveb.saasops.batch.sys.domain.DatasourceManage">
+        select * from db_site_datasource
+    </select>
+
+    <select id="selectProxys" parameterType="String" resultType="java.lang.String">
+      select `values` from s_sys_config where groups=#{groups}
+    </select>
+
+    <select id="getJobExecuteFailMessages" parameterType="map" resultType="com.eveb.saasops.batch.sys.domain.JobFailMessageModel">
+        select * from job_execute_fail_msg
+        where platform=#{platform}
+        and executeStatus=500
+        <if test=" jobid !=null and jobid>0">
+            And id=${jobid}
+        </if>
+        order by firstTime desc limit ${limit}
+    </select>
+
+    <insert id="insertJobExecuteFailMessage"  useGeneratedKeys="true" keyProperty="model.id" parameterType="com.eveb.saasops.batch.sys.domain.JobFailMessageModel">
+        insert into job_execute_fail_msg (platform,paramater,executeStatus,firstTime) values  (#{model.platform},#{model.paramater},#{model.executeStatus},#{model.firstTime})
+    </insert>
+
+    <update id="updateJobExecuteStatus" parameterType="com.eveb.saasops.batch.sys.domain.JobFailMessageModel">
+        update job_execute_fail_msg set executeStatus=#{model.executeStatus},times=#{model.times},counts=#{model.counts},lastTime=#{model.lastTime} where id=#{model.id}
+    </update>
+
+    <update id="updateJobExecuteBatch">
+        update job_execute_fail_msg set executeStatus=#{executeStatus}
+        where id in
+        <foreach collection="list" open="(" close=")" separator="," item="item">
+            #{item.id}
+        </foreach>
+    </update>
+
+    <insert id="saveOrUpdate" parameterType="com.eveb.saasops.batch.sys.domain.JobFailMessageModel">
+        <selectKey keyProperty="count" resultType="int" order="BEFORE">
+            select count(*) as count from job_execute_fail_msg where id = #{model.id}
+        </selectKey>
+        <if test="count > 0">
+            update job_execute_fail_msg set executeStatus=#{model.executeStatus},times=#{model.times},counts=#{model.counts},lastTime=#{model.lastTime} where id=#{model.id}
+        </if>
+        <if test="count==0">
+            insert into job_execute_fail_msg (platform,apiName,paramater,executeStatus,firstTime,counts,times) values  (#{model.platform},#{model.apiName},#{model.paramater},#{model.executeStatus},#{model.firstTime},#{model.counts},#{model.times})
+        </if>
+    </insert>
+
+    <select id="getGmGameList" parameterType="com.eveb.saasops.batch.sys.domain.TGmGame" resultType="com.eveb.saasops.batch.sys.domain.TGmGame">
+        select * from (select id,depotId,catId,subCatId,depotName,gameCode,gameName from t_gm_game where available=1 and gameCode !=''
+        union select id,depotId,catId,subCatId,depotName,mbGameCode,gameName from t_gm_game where available=1 and mbGameCode !=''
+        union select id,depotId,catId,subCatId,depotName,adGameCode,gameName from t_gm_game where available=1  and adGameCode !=''
+        union select id,depotId,catId,subCatId,depotName,downGameCode,gameName from t_gm_game where available=1  and downGameCode !=''
+        union select id,depotId,catId,subCatId,depotName,embeddedCode,gameName from t_gm_game where available=1  and embeddedCode !=''
+        union select id,depotId,catId,subCatId,depotName,embeddedCode1,gameName from t_gm_game where available=1 and embeddedCode1 !='') tb
+        WHERE 1=1
+        <if test=" gmGame.depotId !=null and gmGame.depotId>0">
+            And depotId=${gmGame.depotId}
+        </if>
+        <if test=" gmGame.catId !=null and gmGame.catId>0">
+            And catId=${gmGame.catId}
+        </if>
+        <if test=" gmGame.subCatId !=null and gmGame.subCatId>0">
+            And subCatId=${gmGame.subCatId}
+        </if>
+    </select>
+
+    <select id="findGmApiOne" resultType="com.eveb.saasops.batch.game.report.domain.TGmApi">
+        select t4.* from
+        t_gm_caseapi t2,t_gm_case t3,t_cp_site t1,s_sys_api t4 where
+        t2.caseId=t3.id and t3.id=t1.caseId and t2.apiId=t4.id and
+        t4.depotId=#{depotId} and t1.sitePrefix=#{siteFore} limit 1
+    </select>
+
+    <select id="getApiPrefixBySiteCode" parameterType="String" resultType="java.lang.String">
+        select ap.prefix from t_cp_site s left join
+        t_gm_apiprefix ap on s.id=ap.siteId
+        where s.siteCode=#{siteCode}
+    </select>
+
+    <select id="getSiteCodeList" parameterType="map" resultType="java.lang.String">
+        select distinct a.siteCode from t_cp_site a where a.isapi=${isApi}
+        <if test="siteCode !=null and siteCode !=''">
+            And a.siteCode =#{siteCode}
+        </if>
+    </select>
+
+    <select id="getSchemaName" resultType="java.lang.String">
+        select schemaName from t_cp_site s where s.siteCode=#{siteCode}
+    </select>
+</mapper>

@@ -1,0 +1,94 @@
+/**平台表**/
+INSERT INTO  `t_gm_depot` (`id`,`depotName`,`depotCode`,`available`,`memo`,`createUser`,`createTime`,`modifyUser`,`modifyTime`,`startDate`,`endDate`, `sortId`) VALUES('22','HG','HG','1','HG','jeff',NOW(),'jeff',NOW(),NOW(),NOW(),22) ;
+
+/**线路表**/
+INSERT INTO `t_gm_api` (`id`,`depotId`,`apiName`,`apiUrl`,`pcUrl`,`pcUrl2`,`mbUrl`,`mbUrl2`,`agyAcc`,`md5Key`,`sortId`,`available`,`createTime`,`modifyTime`,`secureCode`) VALUES(220001,22,'hg_vbet','http://webapi-asia.hointeractive.com/', 'https://hg.apibox.info/','http://webapi-asia.hointeractive.com/','https://hg.apibox.info/','http://webapi-asia.hointeractive.com/','evebliv','eveb@liv@',1,1,NOW(),NOW(),'{"casinoId":"eveaweyh34ahdebz"}') ;
+INSERT INTO `t_gm_api` (`id`,`depotId`,`apiName`,`apiUrl`,`pcUrl`,`pcUrl2`,`mbUrl`,`mbUrl2`,`agyAcc`,`md5Key`,`sortId`,`available`,`createTime`,`modifyTime`,`secureCode`) VALUES(220002,22,'hg_vbet_e','http://webapi-asia.hointeractive.com/', 'https://e-hg.apibox.info/', 'http://webapi-asia.hointeractive.com/', 'https://e-hg.apibox.info/', 'http://webapi-asia.hointeractive.com/', 'vbete', 'vbete@liv@', 1, 1, NOW(), NOW(),'{"casinoId":"besxcb12mn8ghhol"}');
+INSERT INTO `t_gm_api` (`id`,`depotId`,`apiName`,`apiUrl`,`pcUrl`,`pcUrl2`,`mbUrl`,`mbUrl2`,`agyAcc`,`md5Key`,`sortId`,`available`,`createTime`,`modifyTime`,`secureCode`) VALUES(220003,22,'hg_vbet_d','http://webapi-asia.hointeractive.com/', 'https://d-hg.apibox.info/', 'http://webapi-asia.hointeractive.com/', 'https://d-hg.apibox.info/', 'http://webapi-asia.hointeractive.com/', 'vbetd', 'vbete@liv@', 1, 1, NOW(), NOW(),'{"casinoId":"aaaa8lr16livbbbb"}') ;
+
+/**线路与会员名前缀的关系**/
+INSERT INTO `t_gm_apiprefix` ( `apiId`, `prefix`, `siteId`, `available` ) VALUES ( 220001, 'vbet', 45, 1 ) ;
+INSERT INTO `t_gm_apiprefix` ( `apiId`, `prefix`, `siteId`, `available` ) VALUES ( 220002, 'df', 48, 1 ) ;
+INSERT INTO `t_gm_apiprefix` ( `apiId`, `prefix`, `siteId`, `available` ) VALUES ( 220003, 'mgm', 50, 1 ) ;
+
+
+
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','l8i2hq4jo2hjj9ca','百家乐1','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','bacdhq2j04hjj8ca','百家乐2','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','cfnfubozrmdpyj3h','百家乐3','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','bc4drq1k02hnj8cd','尊贵百家乐1','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','bc5drt1kr2bsj4ch','尊贵百家乐2','0');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','bc7ire5oi4uhetfd','贵宾厅百家乐1','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','bc8kuw8luk1dgfhy','贵宾厅百家乐2','0');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','ncbaccj5jr2kplmj','免水百家乐','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','wnp11c348ew618ci','骰宝','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','x9i3jxq3kiyxx670','轮盘1','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','x6zwdu87zqe43ksd','轮盘2','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','r34yunj09drqyt3n','贵宾厅轮盘1','0');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','dat2hq6jo4hjh8dt','龙虎','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','bj2m46lf2wguzbya','二十一点1','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','yfjv7uzd11rq4ecy','二十一点2','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','bj3m46lf2wguzby3','二十一点3','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','erbj1ws4bgmnb2ws','贵宾厅二十一点1','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,22,'HG','sqzbace5jr2kvljm','眯牌百家乐 1','0');
+
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','731c0ic7s8el835d','火焰777','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7k78h0c9eq1wklby','火焰777','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','24r2hwo7m6zaknkp','百家乐','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','0suxq7m815j9vaer','二十一点','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','6wjz46hvko913lm4','加勒比海扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','hnfd76shwsozrnwj','现金满袋','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','t4fd7tsh5so6rnw8','闪亮派对','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','ng7cukrwub7xzstj','娱乐场之战','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','dphf72iwxhozrnwf','樱桃工坊','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','k5fd55shwsozrnwo','经典杰克高手','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','s4fd34shwsozrnwn','经典小丑扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','h2fd22shwsozrnww','经典视频扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','jypd73swxhozrnwx','杰克高手','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','ktpd74swxhozrnwx','杰克高手','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','bl3bna7a1z18tyir','小丑扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','pqjhxbnro0prbcv1','小丑扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','wks6njmjoop6pvnu','视频扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','uwpd76swxhozrnwx','视频扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','p2jd73uwxhozrnwh','幸运宝石','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','i6ed15twxhozrnwt','黄金地鼠','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','tkpd74ywxhozrnwr','金装三重7','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','j5ed26rwxhozrnws','日式翻倍扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','k4fd56shwsozrnwj','日式翻倍扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','731c0ic7s8el835d','火焰777','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7k78h0c9eq1wklby','火焰777','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','24r2hwo7m6zaknkp','百家乐','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','0suxq7m815j9vaer','二十一点','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','6wjz46hvko913lm4','加勒比海扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','hnfd76shwsozrnwj','现金满袋','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','t4fd7tsh5so6rnw8','闪亮派对','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','ng7cukrwub7xzstj','娱乐场之战','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','dphf72iwxhozrnwf','樱桃工坊','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','k5fd55shwsozrnwo','经典杰克高手','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','s4fd34shwsozrnwn','经典小丑扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','h2fd22shwsozrnww','经典视频扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','jypd73swxhozrnwx','杰克高手','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','ktpd74swxhozrnwx','杰克高手','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','bl3bna7a1z18tyir','小丑扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','pqjhxbnro0prbcv1','小丑扑克','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','wks6njmjoop6pvnu','视频扑克','1');
+
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF701','顶尖对决','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF702','激情篮球','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF703','新春大吉','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF704','海盗之战','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF705','埃及众神','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF706','精灵公主','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF707','皇帝宝物','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF708','激爆水果','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF709','长城探宝','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF710','印第安纳任务','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF711','珠宝店','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF712','西游记','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF713','太阳神传说','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF714','神秘麻将盒','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF715','赤壁之战','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF716','罗宾汉','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF717','转运护身符','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF718','少林传奇','1');
+INSERT INTO `t_gm_game` (`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,22,'HG','7dgRBzOaJBvOF719','拉斯韦加斯之夜','1');

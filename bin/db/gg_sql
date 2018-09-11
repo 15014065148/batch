@@ -1,0 +1,23 @@
+/**平台表**/
+INSERT INTO  `t_gm_depot` (`id`,`depotName`,`depotCode`,`available`,`memo`,`createUser`,`createTime`,`modifyUser`,`modifyTime`,`startDate`,`endDate`, `sortId`) VALUES('26','GG','GG','1','GG','jeff',NOW(),'jeff',NOW(),NOW(),NOW(),26) ;
+
+/**线路表**/
+INSERT INTO `t_gm_api` (`id`,`depotId`,`apiName`,`apiUrl`,`pcUrl`,`pcUrl2`,`mbUrl`,`mbUrl2`,`agyAcc`,`md5Key`,`secureCode`,`sortId`,`available`,`createTime`,`modifyTime`) VALUES(260001,26,'gg_test','http://testapi.gg626.com:5050/api/doReport.do', '','','','','TE231','123456','{"cagent":"TE231","des_key":"12345678","md5_key":"123456"}',1,1,NOW(),NOW()) ;
+
+/**线路与会员名前缀的关系**/
+INSERT INTO `t_gm_apiprefix` ( `apiId`, `prefix`, `siteId`, `available` ) VALUES ( 260001, 'vbet', 83, 1 ) ;
+
+/** 电子游戏 **/
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,26,'GG','0','游戏大厅',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,26,'GG','101','捕鱼天下',2);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,26,'GG','102','水果机',3);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,26,'GG','105','幸运五张',4);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,26,'GG','106','大鱼吃小鱼',5);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,26,'GG','107','射龙门',6);
+
+/** 设备类型 **/
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('GG','origin_code','deviceType','0','PC Web');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('GG','origin_code','deviceType','1','Android');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('GG','origin_code','deviceType','2','iOS');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('GG','origin_code','deviceType','3','Android Web');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('GG','origin_code','deviceType','4','iOS Web');

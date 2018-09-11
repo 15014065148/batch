@@ -1,0 +1,48 @@
+/**平台表**/
+INSERT INTO  `t_gm_depot` (`id`,`depotName`,`depotCode`,`available`,`memo`,`createUser`,`createTime`,`modifyUser`,`modifyTime`,`startDate`,`endDate`, `sortId`) VALUES('24','盘古彩播','PG','0','PG','admin',NOW(),'jeff',NOW(),NOW(),NOW(),24) ;
+
+/**线路表**/
+INSERT INTO `t_gm_api` (`id`,`depotId`,`apiName`,`apiUrl`,`pcUrl`,`pcUrl2`,`mbUrl`,`mbUrl2`,`agyAcc`,`md5Key`,`secureCode`,`sortId`,`available`,`createTime`,`modifyTime`) VALUES(240000,24,'pg_eveb','http://api.pgcaibo123.com/', 'http://livefront.pg.live/#/main/liveList','http://livefront.pg.live/#/main/liveList','http://livefront.pg.live/#/main/liveList','http://livefront.pg.live/#/main/liveList','787217335','qrMRAq8D8rhWHgHwZVfjkfZ3kuQokqd50AJ','{"ftpIp":"58.82.236.30","ftpUser":"eveb","ftpPass":"EFgcgi0ibvo9"}',1,1,NOW(),NOW()) ;
+
+/**线路与会员名前缀的关系**/
+INSERT INTO `t_gm_apiprefix` ( `apiId`, `prefix`, `siteId`, `available` ) VALUES ( 240000, 'ybh', 83, 1 ) ;
+
+/** 添加游戏 **/
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','5','重庆时时彩',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','6','新疆时时彩',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','7','天津时时彩',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','8','上海十一选五',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','10','安徽十一选五',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','11','黑龙江十一选五',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','12','湖北十一选五',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','13','吉林十一选五',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','14','江苏十一选五',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','15','辽宁十一选五',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','16','四川十一选五',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','17','天津十一选五',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','18','云南十一选五',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','19','浙江十一选五',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','20','江苏快三',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','21','安徽快三',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','22','湖北快三',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','23','吉林快三',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','24','上海快三',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','25','北京PK10',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','26','广东十一选五',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','29','山东十一选五',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','30','重庆快乐10分',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','31','广东快乐10分',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','32','天津快乐10分',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','34','PC蛋蛋',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(12,24,'PG','35','六合彩',1);
+
+/** 电子游戏 **/
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,24,'PG','1','欢乐斗牛',1);
+
+/** 设备类型 **/
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('PG','origin_code','deviceType','1','PC');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('PG','origin_code','deviceType','2','H5');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('PG','origin_code','deviceType','3','安卓');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('PG','origin_code','deviceType','4','苹果');
+
+

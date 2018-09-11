@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.eveb.saasops.batch.bet.mapper.MbrBillDetailMapper">
+
+    <select id="findMbrBillDetail" resultType="com.eveb.saasops.batch.bet.entity.MbrBillDetail">
+        ${schemaCode}
+        SELECT  mbd.id , mbd.orderNo ,mbd.loginName,mbd.accountId,mbd.financialCode,mbd.amount,mbd.afterBalance,mbd.beforeBalance,mbd.opType,mbd.orderTime,mbd.memo,mbd.depotId,tbf.codeName
+                FROM mbr_bill_detail mbd
+                LEFT JOIN t_bs_financialcode tbf on mbd.financialCode =tbf.code
+                LEFT JOIN mbr_account ma on ma.loginName =mbd.loginName where mbd.id > #{id} ORDER BY  mbd.accountId asc
+    </select>
+
+    <select id="findMbrBillDetaiCount" resultType="java.lang.Integer">
+        ${schemaCode}
+        select count(1) from mbr_bill_detail where id > #{beginId}
+    </select>
+
+    <select id="findMbrBillDetaiIndex" resultType="java.lang.Integer">
+        ${schemaCode}
+        select id from mbr_bill_detail order by id desc limit 1
+    </select>
+
+    <select id="findMbrBillDetailPage" resultType="com.eveb.saasops.batch.bet.entity.MbrBillDetail">
+        ${schemaCode}
+        SELECT mbd.id , mbd.orderNo ,mbd.loginName,mbd.accountId,mbd.financialCode,mbd.amount,mbd.afterBalance,mbd.beforeBalance,mbd.opType,mbd.orderTime,mbd.memo,mbd.depotId,tbf.codeName
+             FROM mbr_bill_detail mbd
+            LEFT JOIN t_bs_financialcode tbf on mbd.financialCode =tbf.code
+            LEFT JOIN mbr_account ma on ma.loginName =mbd.loginName where mbd.id > #{id} ORDER BY  mbd.accountId asc limit #{beginNo},#{size}
+    </select>
+
+    <select id="findMbrAccountList" resultType="com.eveb.saasops.batch.bet.entity.MbrAccount">
+        ${schemaCode} SELECT * FROM mbr_account WHERE available = 1 </select>
+
+    <select id="findMbrBillDetailMbrAccount" resultType="com.eveb.saasops.batch.bet.entity.MbrBillDetail">
+        ${schemaCode} SELECT mbd.id , mbd.orderNo ,mbd.loginName,mbd.accountId,mbd.financialCode,mbd.amount,mbd.afterBalance,mbd.beforeBalance,mbd.opType,mbd.orderTime,mbd.memo,mbd.depotId,tbf.codeName
+        FROM mbr_bill_detail mbd
+        LEFT JOIN t_bs_financialcode tbf on mbd.financialCode =tbf.code
+        LEFT JOIN mbr_account ma on ma.loginName =mbd.loginName where mbd.id > #{id} and  ma.id = #{mbrAccountId} order by orderTime asc
+    </select>
+
+    <select id="findMbrWalletById" resultType="com.eveb.saasops.batch.bet.entity.MbrWallet">
+        ${schemaCode} SELECT mbd.id , mbd.orderNo ,mbd.loginName,mbd.accountId,mbd.financialCode,mbd.amount,mbd.afterBalance,mbd.beforeBalance,mbd.opType,mbd.orderTime,mbd.memo,mbd.depotId,tbf.codeName
+        FROM mbr_bill_detail mbd
+        LEFT JOIN t_bs_financialcode tbf on mbd.financialCode =tbf.code
+        LEFT JOIN mbr_account ma on ma.loginName =mbd.loginName where mbd.id > #{id} and  ma.id = #{mbrAccountId} order by orderTime asc
+    </select>
+
+    <select id="findMbrOp" resultType="java.util.Map" parameterType="java.lang.Integer">
+        ${schemaCode}
+        SELECT Max(CASE optype WHEN 0 THEN amout ELSE 0 END ) payAmout, Max(CASE optype WHEN 1 THEN amout ELSE 0 END ) receiveAmout  FROM
+            (select opType,sum(amount) amout FROM saasops_df.mbr_bill_detail WHERE accountId = #{accountId} GROUP BY opType) A
+    </select>
+</mapper>

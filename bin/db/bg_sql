@@ -1,0 +1,33 @@
+/**平台表**/
+INSERT INTO  `t_gm_depot` (`id`,`depotName`,`depotCode`,`available`,`memo`,`createUser`,`createTime`,`modifyUser`,`modifyTime`,`startDate`,`endDate`, `sortId`) VALUES('28','BG','BG','0','BG','admin',NOW(),'jeff',NOW(),NOW(),NOW(),24) ;
+
+/**线路表**/
+INSERT INTO `s_sys_api` (`id`,`depotId`,`apiName`,`apiUrl`,`pcUrl`,`pcUrl2`,`mbUrl`,`mbUrl2`,`agyAcc`,`md5Key`,`secureCode`,`sortId`,`available`,`createTime`,`modifyTime`) VALUES(280001,28,'bg_eveb','http://am.bgvip55.com/cloud/api/', '','','','','am00','8153503006031672EF300005E5EF6AEF','{"agentLoginId":"","agentId":""}',1,1,NOW(),NOW()) ;
+
+/**线路与会员名前缀的关系**/
+INSERT INTO `t_gm_apiprefix` ( `apiId`, `prefix`, `siteId`, `available` ) VALUES ( 280001, 'ybh', 83, 1 );
+
+/** 添加游戏 **/
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,28,'BG','1','传统百家乐',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,28,'BG','2','轮盘',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,28,'BG','3','骰宝',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,28,'BG','4','龙虎',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,28,'BG','7','极速百家乐',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,28,'BG','9','保险百家乐',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,28,'BG','10','共咪百家乐',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,28,'BG','11','多彩百家乐',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,28,'BG','13','牛牛',1);
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(3,28,'BG','14','炸金花',1);
+/** 捕鱼 **/
+INSERT INTO `t_gm_game`(`catId`,`depotId`,`depotName`,`gameCode`,`gameName`,`available`) VALUES(5,28,'BG','hunter','捕鱼',1);
+
+/** 设备类型 **/
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('BG','origin_code','deviceType','1','PC-WEB');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('BG','origin_code','deviceType','2','PC-CLIENT');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('BG','origin_code','deviceType','3','Android App');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('BG','origin_code','deviceType','4','iOS App');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('BG','origin_code','deviceType','5','Android Pad');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('BG','origin_code','deviceType','6','iOS Pad');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('BG','origin_code','deviceType','7','System backend');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('BG','origin_code','deviceType','8','H5');
+INSERT INTO `t_gm_code`(`platform`,`codetype`,`codegroup`,`codeid`,`codename`) VALUES('BG','origin_code','deviceType','9','Wechat');

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.eveb.saasops.batch.bet.mapper.ValidBetMapper">
+
+
+    <select id="findActivityList" resultType="com.eveb.saasops.batch.bet.entity.OprActActivity"
+            parameterType="com.eveb.saasops.batch.bet.entity.OprActActivity">
+        ${schemaPrex}
+        SELECT acy.*, re.rule,re.id ruleId FROM opr_act_activity acy
+        LEFT JOIN opr_act_rule re ON acy.id = re.activityId
+        AND re.time = (SELECT MAX(time) FROM opr_act_rule WHERE activityId = re.activityId)
+        LEFT JOIN t_op_acttmpl acl ON acl.id = acy.actTmplId
+        WHERE acy.available = 1
+        AND date_format(acy.useStart, '%Y-%m-%d') <![CDATA[ <= ]]> #{useStart}
+        AND date_format(acy.useEnd,'%Y-%m-%d') <![CDATA[ >= ]]> #{useStart} AND acl.tmplCode =#{code5}
+    </select>
+
+    <select id="findValidbetCount" resultType="java.lang.Integer">
+        ${schemaPrex}
+        SELECT count(*) FROM mbr_validBet WHERE activityId = #{activityId}
+        AND date_format(time, '%Y-%m-%d') = #{time}
+    </select>
+
+    <select id="findMbrAccountOne" resultType="com.eveb.saasops.batch.bet.entity.MbrAccount">
+        ${schemaPrex}
+        SELECT * FROM mbr_account WHERE loginName = #{loginName}
+    </select>
+
+    <insert id="insertValidBet" parameterType="com.eveb.saasops.batch.bet.entity.MbrValidbet">
+        ${schemaPrex}
+        INSERT INTO mbr_validBet(activityId,validBet,time,accountId,loginName)
+        VALUES (#{activityId},#{validBet},#{time},#{accountId},#{loginName})
+    </insert>
+
+    <select id="selectBankcardCount" resultType="java.lang.Integer"
+            parameterType="com.eveb.saasops.batch.bet.entity.MbrBankcard">
+        ${schemaPrex}
+        SELECT * FROM mbr_bankcard WHERE accountId =#{accountId}
+        AND available =#{available} AND isDel =#{isDel}
+    </select>
+
+    <select id="selectMbrWalletOne" resultType="com.eveb.saasops.batch.bet.entity.MbrWallet"
+            parameterType="com.eveb.saasops.batch.bet.entity.MbrWallet">
+        ${schemaPrex}
+        SELECT * FROM mbr_wallet WHERE accountId =#{accountId}
+    </select>
+
+    <update id="updateMbrWalletAdd" parameterType="com.eveb.saasops.batch.bet.entity.MbrWallet">
+         ${schemaPrex}
+        UPDATE mbr_wallet SET balance=balance+#{balance} WHERE accountId =#{accountId}
+    </update>
+
+    <update id="updateOprActBonus" parameterType="com.eveb.saasops.batch.bet.entity.OprActBonus">
+         ${schemaPrex}
+        UPDATE opr_act_bonus SET status = #{status},auditUser=#{auditUser},auditTime=#{auditTime},billDetailId=#{billDetailId} WHERE id =#{id}
+    </update>
+
+    <insert id="insertMbrBillDetail" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.eveb.saasops.batch.bet.entity.MbrBillDetail">
+        ${schemaPrex}
+        INSERT INTO mbr_bill_detail (accountId,loginName,amount,financialCode,opType,orderNo,orderTime,depotId,afterBalance,beforeBalance)
+        VALUES (#{accountId},#{loginName},#{amount},#{financialCode},#{opType},#{orderNo},#{orderTime},#{depotId},#{afterBalance},#{beforeBalance})
+    </insert>
+
+    <insert id="insertOprActBonus" useGeneratedKeys="true" keyProperty="id"
+            parameterType="com.eveb.saasops.batch.bet.entity.OprActBonus">
+        ${schemaPrex}
+        INSERT INTO opr_act_bonus
+        (accountId,loginName,applicationTime,donateRatio,validBet,activityId,status,bonusAmount,isShow,ruleId,orderNo,orderPrefix)
+        VALUES (#{accountId},#{loginName},#{applicationTime},#{donateRatio},#{validBet},#{activityId},#{status},#{bonusAmount},#{isShow},#{ruleId},#{orderNo},#{orderPrefix})
+    </insert>
+
+    <select id="findMbrAccountList" resultType="com.eveb.saasops.batch.bet.entity.MbrAccount">
+        ${schemaPrex}
+        SELECT * FROM mbr_account
+   </select>
+
+    <select id="findMbrAccountTimeByAccountId" resultType="java.lang.String">
+        ${schemaPrex}
+        SELECT createTime FROM mbr_account_time WHERE accountId=#{accountId} ORDER BY ID DESC LIMIT 1
+    </select>
+
+    <insert id="insertMbrAccountTime" parameterType="com.eveb.saasops.batch.bet.entity.MbrAccountTime">
+        ${schemaPrex}
+        INSERT INTO mbr_account_time (login,logout,accountId,loginName,createTime,duration)
+        VALUES(#{login},#{logout},#{accountId},#{loginName},#{createTime},#{duration})
+    </insert>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.eveb.saasops.batch.bet.mapper.DepotBalanceMapper">
+
+    <select id="findMbrDepotWalletList" resultType="com.eveb.saasops.batch.bet.entity.MbrDepotWallet">
+        ${schemaPrex}
+        SELECT * FROM mbr_depot_wallet WHERE isTransfer = 1
+    </select>
+
+    <select id="findAccountAmount" resultType="java.math.BigDecimal"
+            parameterType="com.eveb.saasops.batch.bet.entity.MbrBillDetail">
+        ${schemaPrex}
+        SELECT SUM(amount) FROM mbr_bill_detail WHERE accountId=#{accountId}
+        AND orderTime >=#{orderTime} AND depotId=#{depotId} AND opType=#{opType}
+    </select>
+
+    <update id="updateMbrDepotWalletList" parameterType="com.eveb.saasops.batch.bet.entity.MbrBillDetail">
+        ${schemaPrex}
+        UPDATE mbr_depot_wallet SET balance =#{balance},time =#{time}  WHERE id = #{id}
+    </update>
+</mapper>

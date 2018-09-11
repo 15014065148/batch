@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.eveb.saasops.batch.bet.mapper.FundMapper">
+
+   <select id="getDepositeNoPay" parameterType="java.lang.String" resultType="com.eveb.saasops.batch.bet.entity.FundDeposit">
+       ${schemaCode}
+      SELECT * FROM fund_deposit WHERE
+           status =2 and createTime <![CDATA[ <= ]]> date_sub(NOW(), INTERVAL 2 DAY)
+   </select>
+
+    <update id="depositeNoPay" parameterType="java.lang.String">
+        ${schemaCode}
+        UPDATE  fund_deposit SET status = 0 where status =2 and createTime <![CDATA[ <= ]]> date_sub(NOW(), INTERVAL 2 DAY)
+        and id = #{id}
+    </update>
+    <select id="queryOnlinePayOne" resultType="com.eveb.saasops.batch.bet.entity.SetBacicOnlinepay" parameterType="integer">
+        ${schemaCode}
+      SELECT * FROM set_bacic_onlinePay WHERE
+          id = #{id}
+    </select>
+</mapper>
